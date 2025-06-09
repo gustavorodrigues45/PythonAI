@@ -41,4 +41,5 @@ model.fit(train_images, train_labels, epochs=5, validation_split=0.2)
 
 # Avaliação do modelo com o dataset de teste
 test_loss, test_acc = model.evaluate(test_images, test_labels)
+model.save('model001.keras')
 print(f"Precisão no teste: {test_acc:.4f}")
