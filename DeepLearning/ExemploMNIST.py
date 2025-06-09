@@ -8,6 +8,7 @@
 # Importar bibliotecas necessárias
 import tensorflow as tf
 from tensorflow.keras import layers, models
+import matplotlib.pyplot as plt
 import numpy as np
 
 # Carregar o dataset MNIST (imagens de dígitos manuscritos)
@@ -16,6 +17,19 @@ import numpy as np
 # Pré-processamento: normalizar as imagens para valores entre 0 e 1
 train_images = train_images / 255.0
 test_images = test_images / 255.0
+
+# Visualizar as primeiras 9 imagens do conjunto de treinamento
+fig, axes = plt.subplots(3, 3, figsize=(8,8))
+for i in range(9):
+    # Calcula a posição na grade
+    row = i // 3
+    col = i % 3
+    # Exibe a imagem
+    axes[row, col].imshow(train_images[i], cmap='gray')
+    axes[row, col].set_title(f'Label: {train_labels[i]}')  # mostra o rótulo
+    axes[row, col].axis('off')  # remove os eixos para melhor visualização
+plt.tight_layout()
+plt.show()
 
 # Construção do modelo de rede neural
 model = models.Sequential()
@@ -38,7 +52,9 @@ model.compile(optimizer='adam',
 # - epochs=5: número de passagens pelo dataset
 # - validation_split=0.2: usar 20% dos dados de treino para validação
 model.fit(train_images, train_labels, epochs=5, validation_split=0.2)
+model.save('mnist_model001.h5')
 
+test_loss, test_acc = model.evaluate(test_images, test_labels)
 # Avaliação do modelo com o dataset de teste
 test_loss, test_acc = model.evaluate(test_images, test_labels)
 model.save('model001.keras')
