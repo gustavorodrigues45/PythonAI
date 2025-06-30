@@ -1,3 +1,6 @@
+Nome: Gustavo da Encarnação Rodrigues, Victor Cardoso Pinto, João Nogueira e Kayton Rossales Dellatorre
+
+
 Executando o Reconhecimento:
 
 Clone ou baixe o repositório.
